@@ -1,0 +1,124 @@
+#connect_container{
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+#connect_header{
+    height: 50px;
+    width: 100%;
+    display: block;
+    background-color: rgb(21, 20, 24);
+}
+
+#connect_header_connect-container{
+    height: 1px;
+    width: 100%;
+    background-color: rgb(34, 34, 34);
+    display: block;
+}
+
+#connect_header-container{
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+#connect_header_logo{
+    height: 40px;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    left: 10px;
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#close_connect_container{
+    height: 30px;
+    right: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#connect-container{
+    width: 100%;
+    display: block;
+    background-color: inherit;
+}
+
+#username_notAllowed,
+#email_notAllowed{
+    font-family: Lato;
+    color: red;
+    display: none;
+    font-size: 15px;
+}
+
+#username_Allowed,
+#email_Allowed{
+    font-family: Lato;
+    color: rgb(0, 177, 15);
+    display: none;
+}
+
+#userLog,
+#password_login,
+#username,
+#email,
+#password_signup{
+    width: 250px;
+    color: blue;
+    background-color: transparent;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-bottom-color: blue;
+    border-bottom-width: 1px;
+    outline: none;
+    font-family: Lato;
+    font-size: 20px;
+}
+
+#login_btn,
+#signup_btn{
+    outline: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    outline-color: blue;
+    color: blue;
+    background-color: transparent;
+    font-size: 15px;
+    border-radius: 20px;
+    outline-style: solid;
+    outline-width: 2px;
+    font-family: Lato;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#signupForm{
+    display: none;
+}
+
+#signupForm,
+#loginForm{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,26 @@
+#preload{
+    height: 100%;
+    width: 100%;
+    display: block;
+    background-color: white;
+    position: relative;
+}
+
+#loadingText{
+    font-size: 5vh;
+    color: rgb(172, 172, 172);
+    display: block;
+    position: absolute;
+    left: 50%;
+    font-family: Lato;
+    transform: translateX(-50%);
+}
+
+#preloaderGif{
+    height: 400px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

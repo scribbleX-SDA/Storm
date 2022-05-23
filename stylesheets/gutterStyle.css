@@ -1,0 +1,18 @@
+.gutter {
+    background-color: rgb(34, 34, 34);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    position: relative;
+}
+
+.gutter:hover{
+    background-color: blue;
+}
+
+.gutter.gutter-vertical {
+    cursor: row-resize;
+}
+
+.gutter.gutter-horizontal {
+    cursor: col-resize;
+}
