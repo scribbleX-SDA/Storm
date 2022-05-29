@@ -311,7 +311,8 @@ body{
     outline-style: solid;
     outline-color: blue;
     outline-width: 1px;
-    height: 350px;
+    width: 90%;
+    height: 40%;
 }
 
 #dash-header{

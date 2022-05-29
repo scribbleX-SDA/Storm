@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <title>
         :://scribbleX//::[Title]
     </title>
 
     <link rel="stylesheet" href="main.css">
-    :://scribbleX::[Ext-CSS/JS-Links]
+    :://scribbleX//::[Ext-CSS/JS-Links]
 </head>
 <body>
     :://scribbleX//::[BodyContent]
+
+    <span style="position: fixed; bottom: 20px; right: 20px; background-color: black; color: white; padding-left: 15px; padding-right: 15px; padding-top: 8px; padding-bottom: 8px; outline: none; font-size: 15px; font-family: Lato; border-radius: 20px; border-style: solid; border-width: 1px; cursor: pointer; border-color: rgb(6, 6, 6);">Fork - ScribbleX</span>
 
     <script src="main.js"></script>
 </body>

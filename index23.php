@@ -33,13 +33,9 @@
         function idURL(){
             var x = window.location.href;
             x = String(x);
-            x = x.toLowerCase();
             if(x.includes("http://localhost/scribblex/ide/")){
-            //if(true){
                 x = x.replace("http://localhost/scribblex/ide/", "");
-                //alert(x);
                 if(x == ''){
-                    //alert("here...");
                     var auther_info = getCookie("userid");
                     //alert(auther_info);
                     if(auther_info == '' || auther_info == null){auther_info = "2";}
@@ -53,7 +49,7 @@
                             response = String(response);
                             //alert("This is the MAX ID WE GOT: "+response);
                             if(response == "ERROR"){
-                                alert("Unexpected Error. Contact ScribbleX: error@scribblex.net");
+                                //alert("Unexpected Error. Contact ScribbleX: error@scribblex.net");
                             }else{
                                 setTimeout(()=>{
                                     //alert(parseInt(response));
@@ -119,11 +115,23 @@
         <img src="assets/gif/orbScribbleX.gif" alt="Orb preloader" id="preloaderGif">
     </div>
 
+    <div style="display: none;">
+        <form action="" method="POST">
+            <textarea name="html_textArea" id="htmlTextArea" cols="30" rows="10"></textarea>
+            <textarea name="css_textArea" id="cssTextArea" cols="30" rows="10"></textarea>
+            <textarea name="js_textArea" id="jsTextArea" cols="30" rows="10"></textarea>
+            <input type="text" value="" name="projectIDField" id="projectIDField">
+            <input type="text" value="" name="userIDField" id="userIDField">
+            <input type="text" value="" name="privacyStatField" id="privacyStatField">
+            <input type="submit" value="Submit" id="submitCodeButton_form">
+        </form>
+    </div>
 
-    <!--<script>
+
+    <script>
         TogetjerJSConfig_hubBase = "https://collabhub.scribblex.net";
     </script>
-    <script src="https://togetherjs.com/togetherjs-min.js"></script>-->
+    <script src="https://togetherjs.com/togetherjs-min.js"></script>
 
 
     <script>
@@ -237,7 +245,7 @@
                             <img src="assets/icons/palette-active.png" alt="Color Palette" id="palette_active" title="Color Palette - Active" class="dashTools">
                             <img src="assets/icons/gradient.png" alt="Gradient Generator" id="gradient_inactive" title="Gradient Generator" class="dashTools">
                             <img src="assets/icons/gradient-active.png" alt="Gradient Generator" id="gradient_active" title="Gradient Generator - Active" class="dashTools">
-                            <!--&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="TogetherJS(this); return false;">Collaborate</button>-->
+                            &nbsp;&nbsp;&nbsp;&nbsp;<button onclick="TogetherJS(this); return false;">Collaborate</button>
                         </div>
                         <div id="dash-manager"></div>
                     </div>
@@ -258,7 +266,7 @@
                                         <br>
                                         <input type="text" id="project-title"
                                         placeholder="Project Title" required autocomplete="off" spellcheck="false">
-                                        &nbsp;&nbsp;&nbsp;<img src="assets/icons/upload.png" alt="Save Code" id="saveCode"> <!-- onclick="saveCode();" -->
+                                        &nbsp;&nbsp;&nbsp;<img src="assets/icons/upload.png" alt="Save Code" id="saveCode" onclick="saveCodeVal();">
                                         <br>
                                         <br>
                                         <br>
@@ -276,7 +284,7 @@
                                         <img src="assets/icons/reload.png" alt="reload / refresh" id="reloadBtn" class="frameIcons">
                                         <img src="assets/icons/search.png" alt="search" id="searchBtn" class="frameIcons">
                                         <div id="url-bar">
-                                            https://code.scribblex.net/?x=
+                                            https://scribblex.net/username/projectID
                                         </div>
                                     </div>
                                 </div>
@@ -343,7 +351,7 @@
         -->
         <div id="footer">
             <div id="footer-container">
-                <span id="footer-title">Made&nbsp;&nbsp;with&nbsp;&nbsp;<img src="assets/icons/heart.png" alt="Love" class="footer-icon">&nbsp;&nbsp;in&nbsp;&nbsp;INDIA&nbsp;<img src="assets/icons/india.png" alt="India" class="footer-icon" style="height: 17px;"></span>
+                <span id="footer-title">Made&nbsp;&nbsp;with&nbsp;&nbsp;<img src="assets/icons/heart.png" alt="Love" class="footer-icon">&nbsp;&nbsp;&&nbsp;&nbsp;<img src="assets/icons/coffee-cup.png" alt="Coffee" class="footer-icon"></span>
             </div>
         </div>
     </div>
@@ -352,7 +360,7 @@
     <script src="javascript/src/editors.js"></script>
     <script src="javascript/src/render.js"></script>
     <script src="javascript/src/privacyCheck.js"></script>
-    <!--<script src="javascript/src/save.js"></script>-->
+    <script src="javascript/src/save.js"></script>
 
     <script>
         var elem = $("#top-appContainer")[0];
@@ -474,5 +482,34 @@
             document.getElementById("connect_container").style.display = "none";
         });
     </script>
+
+
+    <script>
+        function saveCodeVal(){
+            var html_x = htmlEditor.getValue();
+            var css_x = cssEditor.getValue();
+            var js_x = jsEditor.getValue();
+
+            document.getElementById("htmlTextArea").value = html_x;
+        }
+    </script>
 </body>
 </html>
+
+
+<?php
+    function save(){
+        $htmlCode = htmlspecialchars($_POST["html_textArea"]);
+        $cssCode = htmlspecialchars($_POST["css_textArea"]);
+        $jsCode = htmlspecialchars($_POST["js_textArea"]);
+        $userid = $_POST["userIDField"];
+        $projectid = $_POST["projectIDField"];
+        $privacyStat = $_POST["privacyStatFiled"];
+
+        $file = fopen("/projects/tempTest.txt", "w");
+        fwrite($file, $htmlCode."\n\n\n\n".$cssCode."\n\n\n\n".$jsCode."\n\n\n\n");
+        fclose($file);
+
+        echo "<script>alert('PHP process complete');</script>";
+    }
+?>
