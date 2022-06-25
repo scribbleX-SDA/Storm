@@ -3,9 +3,9 @@
 header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']); // allowing all domains to access it. (For now)
 
 $servername = "localhost";
-$db_username = "u887995108_scribblex";
-$db_auth = "Kshitij@2332k";
-$dbname = "u887995108_scribblex";
+$db_username = "u887995108_slx_connect";
+$db_auth = "slxConnect@69750009";
+$dbname = "u887995108_slx_connect";
 
 $user = $_REQUEST["user"];
 $auth = $_REQUEST["auth"];
@@ -19,15 +19,15 @@ if(!$connect){
     die("ERROR Establishing Connection");
 }
 
-$sql = "SELECT authKey FROM userDB WHERE username='".$user."' OR email='".$user."'";
+$sql = "SELECT authHash FROM connectToScribbleX WHERE userName='".$user."' OR email='".$user."'";
 $result = mysqli_query($connect, $sql);
 if(mysqli_num_rows($result) == 0){
     $response = "NOUSERFOUND";
     goto SEND_RESPONSE;
 }else{
     $row = mysqli_fetch_assoc($result);
-    if($row["authKey"] == $auth){
-        $sql = "SELECT userid, membStat, regDate FROM userDB WHERE username='".$user."' OR email='".$user."'";
+    if($row["authHash"] == $auth){
+        $sql = "SELECT userID, membership, recDate FROM connectToScribbleX WHERE userName='".$user."' OR email='".$user."'";
         $result = mysqli_query($connect, $sql);
 
         if(mysqli_num_rows($result) == 0){
@@ -35,7 +35,7 @@ if(mysqli_num_rows($result) == 0){
             goto SEND_RESPONSE;
         }else if(mysqli_num_rows($result) > 0 && mysqli_num_rows($result) == 1){
             $row = mysqli_fetch_assoc($result);
-            $response = $row["userid"].$sep.$row["membStat"].$sep.$row["regDate"];
+            $response = $row["userID"].$sep.$row["membership"].$sep.$row["recDate"];
             goto SEND_RESPONSE;
         }else{
             $response = "ERROR";

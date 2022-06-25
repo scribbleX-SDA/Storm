@@ -1,5 +1,6 @@
 Split(["#top-holder", "#bottom-holder"], {
     direction: 'vertical',
+    minSize: 30,
     gutterSize: 3,
     sizes: [55,45],
     snapOffset: 0,

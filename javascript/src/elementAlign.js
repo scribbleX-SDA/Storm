@@ -1,5 +1,5 @@
 function elementAlign(){
-    $("#appContainer").height($("#container").height() - $("#header").height() - $("#footer").height() - 1);
+    $("#appContainer").height($("#container").height() - $("#header").height() - 30);
     $("#holder").width($("#container").width() - $("#side-bar").width() - 1);
     $("#frameCover").height($("#frame").height() - $("#frame-header").height() - $("#devConsole").height());
     $("#previewWindow").height($("#frame").height() - $("#frame-header").height() - $("#devConsole").height());
@@ -13,4 +13,5 @@ function elementAlign(){
     $("#jsContainer").height($("#jsHolder").height() - $("#js-header").height());
     //$("#dashContainer").width($("#side-bar").width() - 40);
     $("#dash-container").height($("#dashContainer").height() - $("#dash-header").height() - 1);
+    $("#sidebar-footer").width($("#side-bar").width());
 }

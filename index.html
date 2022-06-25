@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ScribbleX - Online HTML Editor</title>
+    <link rel="shortcut icon" href="assets/fav/kt23.ico" type="image/x-icon">
 
     <script>
         var dedicatedProjectID = '';
-        var useridInit = '';
+        //var useridInit = '';
     </script>
 
     <link rel="stylesheet" href="stylesheets/main.css">
@@ -17,6 +18,27 @@
     <link rel="stylesheet" href="stylesheets/preloader.css">
     <link rel="stylesheet" href="stylesheets/connect.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Samarkan';
+            src: url('assets/fonts/SamarkanNormal.eot');
+            src: url('assets/fonts/SamarkanNormal.eot?#iefix') format('embedded-opentype'),
+                url('assets/fonts/SamarkanNormal.woff2') format('woff2'),
+                url('assets/fonts/SamarkanNormal.woff') format('woff'),
+                url('assets/fonts/SamarkanNormal.ttf') format('truetype'),
+                url('assets/fonts/SamarkanNormal.svg#SamarkanNormal') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
 
     <script src="javascript/libs/jQuery.js"></script>
     <script src="javascript/libs/split.js"></script>
@@ -26,8 +48,35 @@
 
     <script src="javascript/src/elementAlign.js"></script>
     <script src="javascript/src/cookiesManager.js"></script>
+    <script src="javascript/src/slx-inspector.js"></script>
 
     <script>
+        //var gen_id = "";
+        function generateID(){
+            //alert("generateIF() called");
+            var ajxCall_id = new XMLHttpRequest();
+            ajxCall_id.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    dedicatedProjectID = this.responseText;
+                    //alert("GENERATED ID: "+dedicatedProjectID);
+                }
+            };
+            ajxCall_id.open("GET", "https://backend.scribblex.net/generate_id.php", true);
+            ajxCall_id.send();
+
+            setTimeout(()=>{
+                document.getElementById("url-bar").innerText = "https://sl-x.ml/?x="+dedicatedProjectID;
+            }, 5000);
+            
+            //dedicatedProjectID = gen_id;
+        }
+
+        generateID();
+    </script>
+
+
+
+    <!--<script>
         var id = '';
         var auther_info = '';
         function idURL(){
@@ -86,10 +135,74 @@
             }
         }
         idURL();
+    </script>-->
+
+    <script>
+        function pid_avail(){
+            var url = String(window.location.href);
+            var temp = null;
+            var info_grab = null;
+            if(url.includes("/?id=")){
+                var id = url.replace("https://app.scribblex.net/?id=", "");
+                var ajxCall_html = new XMLHttpRequest;
+                ajxCall_html.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        temp = String(decodeURIComponent(this.responseText));
+                        if(temp == "Invalid"){ alert("Project Doesn't Exist."); }
+                        else{ htmlEditor.setValue(temp); }
+                    }
+                };
+                ajxCall_html.open("GET", "https://code.scribblex.net/htmlrelease.php?x="+id, true);
+                ajxCall_html.send();
+
+                var ajxCall_css = new XMLHttpRequest;
+                ajxCall_css.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        temp = String(decodeURIComponent(this.responseText));
+                        if(temp == "Invalid"){ alert("Project Doesn't Exist."); }
+                        else{ cssEditor.setValue(temp); }
+                    }
+                };
+                ajxCall_css.open("GET", "https://code.scribblex.net/cssrelease.php?x="+id, true);
+                ajxCall_css.send();
+
+                var ajxCall_js = new XMLHttpRequest;
+                ajxCall_js.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        temp = String(decodeURIComponent(this.responseText));
+                        if(temp == "Invalid"){ alert("Project Doesn't Exist."); }
+                        else{ jsEditor.setValue(temp); }
+                    }
+                };
+                ajxCall_js.open("GET", "https://code.scribblex.net/jsrelease.php?x="+id, true);
+                ajxCall_js.send();
+
+                var ajxCall_info = new XMLHttpRequest;
+                ajxCall_info.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        if(temp == "Invalid"){ alert("Project Doesn't Exist."); }
+                        else{
+                            setTimeout(()=>{
+                                splitInfo(info_grab);
+                            }, 3000);
+                        }
+                    }
+                };
+                ajxCall_info.open("GET", "https://code.scribblex.net/inforelease.php?x="+id, true);
+                ajxCall_info.send();
+            }
+        }
+
+        function splitInfo(info){
+            var tempArr = info.split(":://ScribbleX//::");
+            document.getElementById("project-title").value = tempArr[0];
+            document.getElementById("projectDescription").value = tempArr[1];
+        }
     </script>
 
     <script>
         function preloader_launch(){
+
             //document.getElementById("footer").style.display = "none";
             setTimeout(()=>{
                 document.getElementById("footer").style.display = "block";
@@ -102,6 +215,10 @@
             elementAlign();
             preloader_launch();
             $("#connect-container").height($("#connect_container").height() - $("#connect_header").height() - 1);
+            //generateID();
+            //document.getElementById("url-bar").innerHTML = "sl-x.ml/"+dedicatedProjectID;
+            pid_avail();
+            slx_inspector();
         }
     </script>
 
@@ -116,7 +233,31 @@
 </head>
 <body onload="initiate();">
     <div id="preload">
-        <img src="assets/gif/orbScribbleX.gif" alt="Orb preloader" id="preloaderGif">
+        <img src="assets/logo/logox.png" alt="scribblex logo" id="preloader_logo">
+        <br>
+        <div id="precontentLoader">
+            <div style="position: relative;">
+            <div class="showbox">
+                <div class="loader">
+                  <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="17" fill="none" stroke-width="2" stroke-miterLimit="10" />
+                  </svg>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div style="position: absolute; top: 94%; left: 50%; transform: translate(-50%, -50%);">
+            <span style="color: grey; font-family: 'Courier New', Courier, monospace; font-size: 20px;">MADE WITH</span>
+            <img src="assets/icons/heart.png" alt="" style="height: 30px;">
+            <span style="color: grey; font-family: 'Courier New', Courier, monospace; font-size: 20px;">IN</span>
+            <span style="color: orange; font-family: 'Samarkan'; font-size: 40px;">In</span><span style="background: #0000FF;
+            background: -webkit-radial-gradient(circle farthest-corner at center center, #0000FF 20%, #FFFFFF 30%);
+            background: -moz-radial-gradient(circle farthest-corner at center center, #0000FF 20%, #FFFFFF 30%);
+            background: radial-gradient(circle farthest-corner at center center, #0000FF 20%, #FFFFFF 30%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+             font-family: 'Samarkan'; font-size: 40px;">d</span><span style="color: green; font-family: 'Samarkan'; font-size: 40px;">ia</span>
+        </div>
     </div>
 
 
@@ -258,7 +399,7 @@
                                         <br>
                                         <input type="text" id="project-title"
                                         placeholder="Project Title" required autocomplete="off" spellcheck="false">
-                                        &nbsp;&nbsp;&nbsp;<img src="assets/icons/upload.png" alt="Save Code" id="saveCode"> <!-- onclick="saveCode();" -->
+                                        &nbsp;&nbsp;&nbsp;<img src="assets/icons/upload.png" alt="Save Code" id="saveCode" onclick="saveCode();"> <!-- onclick="saveCode();" -->
                                         <br>
                                         <br>
                                         <br>
@@ -343,7 +484,9 @@
         -->
         <div id="footer">
             <div id="footer-container">
-                <span id="footer-title">Made&nbsp;&nbsp;with&nbsp;&nbsp;<img src="assets/icons/heart.png" alt="Love" class="footer-icon">&nbsp;&nbsp;in&nbsp;&nbsp;INDIA&nbsp;<img src="assets/icons/india.png" alt="India" class="footer-icon" style="height: 17px;"></span>
+                <div id="sidebar-footer">
+                    <center><span><span style="font-family: 'Courier New', Courier, monospace; font-size: 18px;">Made with <img src="assets/icons/heart.png" alt="Love" style="height: 18px;"> in </span> <span style="color: orange;">In</span><span style="color: white;">d</span><span style="color: green;">ia</span></span>&nbsp;<img src="assets/icons/india.png" alt="" style="height: 20px;"></center>
+                </div>
             </div>
         </div>
     </div>
@@ -352,7 +495,7 @@
     <script src="javascript/src/editors.js"></script>
     <script src="javascript/src/render.js"></script>
     <script src="javascript/src/privacyCheck.js"></script>
-    <!--<script src="javascript/src/save.js"></script>-->
+    <script src="javascript/src/save.js"></script>
 
     <script>
         var elem = $("#top-appContainer")[0];
@@ -361,6 +504,7 @@
             htmlEditor.resize();
             cssEditor.resize();
             jsEditor.resize();
+            elementAlign();
         });
         resizeObserveEditors.observe(elem);
         resizeObserveEditors.observe(document.getElementById("container"));
@@ -369,7 +513,7 @@
 
     <script>
         var inspector = document.getElementById("inspector_inactive");
-        var inspector_active = document.getElementById("inspector_active");
+        var  inspector_active = document.getElementById("inspector_active");
         var palette = document.getElementById("palette_inactive");
         var palette_active = document.getElementById("palette_active");
         var gradient = document.getElementById("gradient_inactive");

@@ -2,9 +2,9 @@
 header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']); // allowing all domains to access it. (For now)
 
 $servername = "localhost";
-$db_username = "u887995108_scribblex";
-$db_auth = "Kshitij@2332k";
-$dbname = "u887995108_scribblex";
+$db_username = "u887995108_slx_connect";
+$db_auth = "slxConnect@69750009";
+$dbname = "u887995108_slx_connect";
 
 $inp = $_REQUEST["username"];
 
@@ -13,7 +13,7 @@ if(!$connect){
     die("Connection Failed");
 }
 
-$sql = "SELECT userid FROM userDB WHERE username='".$inp."'";
+$sql = "SELECT userID FROM connectToScribbleX WHERE userName='".$inp."'";
 $result = mysqli_query($connect, $sql);
 if(mysqli_num_rows($result) == 0){
     $response = "0";

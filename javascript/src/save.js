@@ -1,80 +1,127 @@
+var cssCode = '';
+var jsCode = '';
+var htmlCode = '';
+var un_pid = '';
+
 function saveCode(){
-    alert("saveCode called");
-    var html = htmlEditor.getValue();
-    alert(html);
-    html = encodeURIComponent(html);
-    var css = cssEditor.getValue();
-    alert(css);
-    css = encodeURIComponent(css);
-    var js = jsEditor.getValue();
-    alert(js);
-    js = encodeURIComponent(js);
+    console.log("Saving Code...");
+    var htmlSnippet = htmlEditor.getValue();
+    alert("HTML Gained");
+    htmlCode = htmlSnippet;
+    var cssSnippet = cssEditor.getValue();
+    alert("CSS Gained");
+    cssCode = cssSnippet;
+    var jsSnippet = jsEditor.getValue();
+    alert("JS Gained");
+    jsCode = jsSnippet;
+    var author = getCookie("userid");
+    var pid = dedicatedProjectID; 
+    un_pid = pid;
     var title = document.getElementById("project-title").value;
-    alert(title);
-    title = encodeURIComponent(title);
-    var privacy = document.getElementById("togglePrivateBtn").value;
-    alert(privacy);
-    privacy = encodeURIComponent(privacy);
-    var uid = String(getCookie("userid"));
-    alert(uid);
-    
+    var desc = document.getElementById("projectDescription").value;
+    var vis = document.getElementById("togglePrivateBtn").value;
 
-    var ajxCall_html = new XMLHttpRequest();
-    var response = '';
-    ajxCall_html.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            response = String(this.responseText);
-            alert(response);
-            alert("Here in HTML SENDING...");
-        }
-    };
-    ajxCall_html.open("GET", "https://scribblex.net/grab_html.php?code="+html+"&uid="+uid+"&pid="+dedicatedProjectID+"&title="+title+"&ext=NOPE", true);
-    ajxCall_html.send();
-
-    setTimeout(()=>{
-        if(response == "HTML_COMPLETE"){
-            alert("HTML Saved");
-            proceedWithRest(css, js, privacy, uid, dedicatedProjectID);
-        }
-    }, 2000);
-
-    function proceedWithRest(css, js, privacy, userid, projectid){
-        var css_RESP = '';
-        var js_RESP = '';
-        var pr_RESP = '';
-        var ajxCall_css = new XMLHttpRequest();
-        ajxCall_css.onreadystatechange = function(){
+    if(String(author) == '' || String(author) == null){
+        author = 'Anonymous';
+        alert("Author: Anonymous");
+        saveHTML();
+    }else{
+        alert("Making ajxCall - to get Username");
+        var ajxCall = new XMLHttpRequest();
+        ajxCall.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
-                css_RESP = this.responseText;
-                alert(css_RESP);
+                author = this.responseText;
+                alert(author);
+                if(author == "ERROR"){
+                    alert("Error Encountered. Contact ScribbleX");
+                    author = "Anonymous";
+                }
+                saveHTML();
             }
         };
-        ajxCall_css.open("GET", "https://scribblex.net/grab_css.php?code="+css+"&uid="+userid+"&pid="+projectid, true);
-        ajxCall_css.send();
-
-        var ajxCall_js = new XMLHttpRequest();
-        ajxCall_js.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200){
-                js_RESP = this.responseText;
-                alert(js_RESP);
-            }
-        };
-        ajxCall_js.open("GET", "https://scribblex.net/grab_js.php?code="+js+"&uid="+userid+"&pid="+projectid, true);
-        ajxCall_js.send();
-
-        var ajxCall_privacy = new XMLHttpRequest();
-        ajxCall_privacy.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200){
-                pr_RESP = this.responseText;
-                alert(pr_RESP);
-            }
-        };
-        ajxCall_privacy.open("GET", "https://scribblex.net/grab_projectInfo.php?uid="+userid+"&pid="+projectid+"&privacyStat="+privacy, true);
-        ajxCall_privacy.send();
-        //console.log("https://scribblex.net/grab_projectInfo.php?uid="+userid+"&pid="+projectid+"privacyStat="+privacy);
-
-        setTimeout(()=>{
-            alert("Project Saved!");
-        }, 3000);
+        ajxCall.open("GET", "https://backend.scribblex.net/getUsername.php?uid="+String(author), true);
+        ajxCall.send();
     }
+
+
+    /*cssSnippet = String(cssSnippet);
+    cssSnippet = encodeURIComponent(cssSnippet);
+    var cssBlob = new Blob([cssSnippet], {type:"text/plain"});
+    var cssData = new FormData();
+    cssData.append("code", cssBlob);
+    cssData.append("pid", pid);
+
+    fetch("https://code.scribblex.net/saveCSS.php", {
+        method: "POST",
+        body: cssData
+    }).then((res)=>{return res.text();})
+    .then((txt)=>{console.log(txt);});
+
+
+    jsSnippet = String(jsSnippet);
+    jsSnippet = encodeURIComponent(jsSnippet);
+    var jsBlob = new Blob([jsSnippet], {type:"text/plain"});
+    var jsData = new FormData();
+    jsData.append("code", jsBlob);
+    jsData.append("pid", pid);
+
+    fetch("https://code.scribblex.net/saveJSS.php", {
+        method: "POST",
+        body: jsData
+    }).then((res)=>{return res.text();})
+    .then((txt)=>{console.log(txt);});*/
+
+    function saveHTML(){
+        alert("saveHTML() Called");
+        htmlSnippet = String(htmlCode);
+        //htmlSnippet = encodeURIComponent(htmlSnippet);
+        var htmlBlob = new Blob([htmlSnippet], {type:"text/plain"});
+        var htmlData = new FormData();
+        htmlData.append("code", htmlBlob);
+        htmlData.append("author", author);
+        htmlData.append("pid", un_pid);
+        htmlData.append("vis", vis);
+        htmlData.append("title", title);
+        htmlData.append("desc", desc);
+    
+        fetch("https://code.scribblex.net/saveHTML.php", {
+            method: "POST",
+            body: htmlData
+        }).then((res)=>{return res.text();})
+        .then((txt)=>{console.log(txt); saveCSS(cssSnippet);});
+    }
+}
+
+
+function saveJS(){
+    alert("saveJS() Called");
+    jsSnippet = String(jsCode);
+    //jsSnippet = encodeURIComponent(jsSnippet);
+    var jsBlob = new Blob([jsSnippet], {type:"text/plain"});
+    var jsData = new FormData();
+    jsData.append("code", jsBlob);
+    jsData.append("pid", un_pid);
+
+    fetch("https://code.scribblex.net/saveJS.php", {
+        method: "POST",
+        body: jsData
+    }).then((res)=>{return res.text();})
+    .then((txt)=>{console.log(txt);});
+}
+
+
+function saveCSS(){
+    alert("saveCSS() Called");
+    cssSnippet = String(cssCode);
+    //cssSnippet = encodeURIComponent(cssSnippet);
+    var cssBlob = new Blob([cssSnippet], {type:"text/plain"});
+    var cssData = new FormData();
+    cssData.append("code", cssBlob);
+    cssData.append("pid", un_pid);
+
+    fetch("https://code.scribblex.net/saveCSS.php", {
+        method: "POST",
+        body: cssData
+    }).then((res)=>{return res.text();})
+    .then((txt)=>{console.log(txt);  saveJS();});
 }

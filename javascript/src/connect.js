@@ -15,8 +15,11 @@ function splitLoginData(val){
 
         setCookie("userid", userid, 5);
         user_membStat = membStat;
+        alert("Logged-in Successfully!");
 
-        idURL();
+        //idURL();
+        //generateID();
+
     }
 }
 
@@ -28,12 +31,12 @@ function checkLogin(){
             resp = String(this.responseText);
             // alert(resp);
             setTimeout(splitLoginData(resp), 2000);
-            alert("Logged-in Successfully!");
+            
             document.getElementById("connect_container").style.display = "none";
             document.getElementById("container").style.display = "block";
         }
     };
-    ajxCall.open("GET", "https://scribblex.net/login.php?user="+document.getElementById("userLog").value+"&auth="+document.getElementById("password_login").value, true);
+    ajxCall.open("GET", "https://backend.scribblex.net/login.php?user="+document.getElementById("userLog").value+"&auth="+document.getElementById("password_login").value, true);
     ajxCall.send();
 }
 
@@ -51,7 +54,7 @@ document.getElementById("username").addEventListener("keyup", ()=>{
             }
         }
     };
-    ajxCall.open("GET", "https://scribblex.net/usernameCheck.php?username="+document.getElementById("username").value, true);
+    ajxCall.open("GET", "https://backend.scribblex.net/usernameCheck.php?username="+document.getElementById("username").value, true);
     ajxCall.send();
 });
 
@@ -68,7 +71,7 @@ document.getElementById("email").addEventListener("keyup", ()=>{
             }
         }
     };
-    ajxCall.open("GET", "https://scribblex.net/emailCheck.php?email="+document.getElementById("email").value, true);
+    ajxCall.open("GET", "https://backend.scribblex.net/emailCheck.php?email="+document.getElementById("email").value, true);
     ajxCall.send();
 });
 
@@ -89,7 +92,7 @@ function signup(){
                 }
             }
         };
-        ajxCall.open("GET", "https://scribblex.net/signup.php?username="+document.getElementById("username").value+"&email="+document.getElementById("email").value+"&auth="+document.getElementById("password_signup").value, true);
+        ajxCall.open("GET", "https://backend.scribblex.net/signup.php?username="+document.getElementById("username").value+"&email="+document.getElementById("email").value+"&auth="+document.getElementById("password_signup").value, true);
         ajxCall.send();
     }else{
         if(document.getElementById("username_notAllowed").style.display == "none" && document.getElementById("email_notAllowed").style.display == "block"){
