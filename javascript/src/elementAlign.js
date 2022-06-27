@@ -4,6 +4,7 @@ function elementAlign(){
     $("#frameCover").height($("#frame").height() - $("#frame-header").height() - $("#devConsole").height());
     $("#previewWindow").height($("#frame").height() - $("#frame-header").height() - $("#devConsole").height());
     $("#managerContainer").height($("#manager").height() - $("#manager-header").height() - 1);
+    $("#colorPickerContainer").height($("#manager").height() - $("#manager-header").height() -1);
     //$("#managerCenterContainer").height($("#managerContainer").height() - 60);
     $("#manager-container").height($("#managerContainer").height() - 60);
     $("#manager-container").width($("#managerContainer").width() - 60);

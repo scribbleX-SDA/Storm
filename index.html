@@ -24,6 +24,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/easyColorPicker.css">
+    <link rel="stylesheet" href="stylesheets/colorPicker.css">
 
     <style>
         @font-face {
@@ -49,6 +51,7 @@
     <script src="javascript/src/elementAlign.js"></script>
     <script src="javascript/src/cookiesManager.js"></script>
     <script src="javascript/src/slx-inspector.js"></script>
+    <script src="javascript/src/easyColorPicker.js"></script>
 
     <script>
         //var gen_id = "";
@@ -208,7 +211,7 @@
                 document.getElementById("footer").style.display = "block";
                 document.getElementById("container").style.display = "block";
                 document.getElementById("preload").style.display = "none";
-            }, 8000);
+            }, 1000);
         }
 
         function initiate(){
@@ -230,6 +233,7 @@
             //alert("LOGIN FOUND: "+usid);
         }
     </script>
+    
 </head>
 <body onload="initiate();">
     <div id="preload">
@@ -392,6 +396,8 @@
                                 <div id="manager-header" class="Containerheader">
                                     <div class="headerWrap">
                                         <span id="managerText">Manager</span>
+                                        &nbsp;&nbsp;
+                                        <span id="colorPickerText">Color Picker</span>
                                     </div>
                                 </div>
                                 <div id="managerContainer">
@@ -408,6 +414,20 @@
                                         <br>
                                         <span id="privateScribble">Private Scribble</span>&nbsp;&nbsp;&nbsp;<input type="checkbox" class="togglePrivate" id="togglePrivateBtn" onclick="privacyStat();" value="PUBLIC">
                                     </div>
+                                </div>
+                                <div id="colorPickerContainer">
+                                    <main id="x">
+                                        <div class="wrap">
+                                            <p style="float: right; margin-right: 10px; font-family: 'Lato'; font-size: 20px; top: 20px;" class="colorCodeValue"></p>
+                                            <div class="body">
+                                                <div id="color_picker"></div>
+                                                <p class="sample">
+                                                    <i class="sample__color"></i>
+                                                    <em class="sample__code"></em>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </main>
                                 </div>
                             </div>
                             <div id="frame">
@@ -617,6 +637,35 @@
             document.getElementById("container").style.display = "block";
             document.getElementById("connect_container").style.display = "none";
         });
+    </script>
+
+    <script>
+        document.getElementById("colorPickerText").addEventListener("click", ()=>{
+            document.getElementById("colorPickerContainer").style.display = "block";
+            document.getElementById("managerContainer").style.display = "none";
+        });
+
+        document.getElementById("managerText").addEventListener("click", ()=>{
+            document.getElementById("colorPickerContainer").style.display = "none";
+            document.getElementById("managerContainer").style.display = "block";
+        });
+    </script>
+
+    <script src="javascript/src/colorPicker.js"></script>
+    <script>
+        document.getElementsByClassName("colorCodeValue")[0].addEventListener("click", copy_code);
+
+        function copy_code() {
+            var copyText = document.getElementsByClassName("colorCodeValue")[0];
+            var textArea = document.createElement("textarea");
+            textArea.value = copyText.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("Copy");
+            textArea.remove();
+
+            alert("Color Code: "+copyText.textContent+" Copied!");
+        }
     </script>
 </body>
 </html>
