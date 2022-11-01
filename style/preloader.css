@@ -1,0 +1,25 @@
+#preloader{
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: relative;
+    background-color: black;
+}
+
+#preAnime{
+    height: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* #initiateText{
+    font-size: 30px;
+    color: white;
+    position: absolute;
+    font-family: 'Montserrat';
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */

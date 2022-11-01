@@ -1,0 +1,559 @@
+/* @media screen and (max-width: 1492px) and (max-height: 686px) {
+    *{
+        display: none;
+    }
+
+    #screen-issue{
+        display: block !important;
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: relative;
+        background-color: #0F111A;
+    }
+
+    .issue_logo{
+        display: block;
+        height: 100px;
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    html,
+    body{
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background-color: rgb(21, 20, 24);
+        margin: 0;
+        display: block;
+        padding: 0;
+        z-index: 10000;
+    }
+} */
+
+/* @media screen and (min-width: 1493px) and (min-height: 687px) { */
+    #screen-issue{
+        display: none;
+    }
+    
+    *::-webkit-scrollbar{
+        width: 20px;
+        height: 20px;
+        max-height: 30px;
+    }
+      
+    *::-webkit-scrollbar-track{
+        background-color: #4500850a;
+    }
+    
+    *::-webkit-scrollbar-thumb{
+        background: #8400ff56;
+        max-height: 30px;
+    }
+    
+    *{
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-user-drag: none;
+        -moz-user-select: none;
+    }
+    
+    
+    html,
+    body{
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background-color: rgb(21, 20, 24);
+        margin: 0;
+        padding: 0;
+    }
+    
+    #container{
+        height: 100%;
+        width: 100%;
+        display: none;
+        position: relative;
+        background-color: #0F111A;
+    }
+    
+    #footer{
+        height: 30px;
+        width: 100%;
+        background-color: #0A0C12;
+        position: relative;
+        border-top: solid 1px #0F111A;
+        z-index: 1000;
+    }
+    
+    #manager{
+        height: 100%;
+        width: 350px;
+        float: left;
+        position: relative;
+        background-color: #0A0C12;
+    }
+    
+    #adContainer{
+        height: 300px;
+        width: 100%;
+        background-color: #0A0C12;
+    }
+    
+    #innerMgr{
+        width: 100%;
+        display: block;
+        background-color: #0A0C12;
+        border-bottom: solid 1px #0F111A;
+    }
+    
+    #toolsHolder{
+        height: 100%;
+        width: 50px;
+        position: relative;
+        float: left;
+        border-right-style: solid;
+        border-right-width: 1px;
+        border-right-color: #0F111A;
+    }
+    
+    #toolsMgr{
+        height: 100%;
+        width: 299px;
+        float: right;
+        position: relative;
+    }
+    
+    .toolsMgr_inner{
+        height: 95%;
+        width: 90%;
+        position: absolute;
+        display: none;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    #topLeftHolder{
+        height: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    #top-left-logo{
+        height: 40px;
+    }
+    
+    #app{
+        height: 100%;
+        position: relative;
+        background-color: #0F111A;
+        float: right;
+    }
+    
+    #innerApp{
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    #editorPane{
+        height: 100%;
+        min-width: 40px;
+        background-color: #0F111A;
+    }
+    
+    #browserPane{
+        min-width: 40px;
+        height: 100%;
+        background-color: #0F111A;
+    }
+    
+    .gutter {
+        background-color: #0A0C12;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        transition: all ease 0.3s;
+        position: relative;
+        z-index: 1000;
+    }
+    
+    .gutter:hover{
+        background-color: #7700ff;
+    }
+    
+    .gutter.gutter-horizontal {
+        cursor: col-resize;
+    }
+    .gutter.gutter-vertical {
+        cursor: row-resize;
+    }
+    
+    #editorPane .gutter{
+        background-color: rgb(0, 0, 0);
+    }
+    #editorPane .gutter:hover{
+        background-color: #7700ff;
+    }
+    
+    .editorContainer{
+        min-height: 30px !important;
+    }
+    
+    .editorHeader{
+        height: 30px;
+        width: 100%;
+        position: relative;
+        background-color: #0A0C12;
+        z-index: 1000;
+    }
+    
+    .editorLogo{
+        height: 22px;
+        position: absolute;
+        margin-left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    #frameMgr{
+        width: 100%;
+        display: block;
+        position: relative;
+        height: 100%;
+    }
+    
+    #consoleMgr{
+        background-color: black;
+    }
+    
+    #frameHeader{
+        height: 30px;
+        width: 100%;
+        display: block;
+        position: relative;
+        background-color: #0A0C12;
+    }
+    
+    #consoleHeader{
+        height: 30px;
+        width: 100%;
+        display: block;
+        position: relative;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: white;
+    }
+    
+    .headerLogo{
+        height: 28px;
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+    
+    #frameCover{
+        width: 100%;
+        position: relative;
+        display: none;
+        background-color: black;
+    }
+    
+    #sandboxAnime{
+        height: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    #frameContainer{
+        width: 100%;
+        display: block;
+        position: relative;
+    }
+    
+    #browserHead{
+        height: 30px;
+        width: 100%;
+        display: block;
+        position: relative;
+        background-color: #0A0C12;
+    }
+    
+    #browserButtons{
+        height: 100%;
+        display: flex;
+        max-width: 150px;
+        align-items: center;
+        float: left;
+    }
+    
+    #renderAnime{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        float: right;
+        margin-right: 20px;
+    }
+    
+    #renderWait{
+        height: 60%;
+        display: none;
+    }
+    
+    .bbtn{
+        height: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    #urlHolder{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        float: left;
+    }
+    
+    #toggleConsole{
+        margin-left: 20px;
+        height: 30px;
+        display: inline-block;
+    }
+    
+    #projectID{
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        font-size: 14px;
+        background-color: #2b2349;
+        color: white;
+        font-family: 'Montserrat';
+        font-weight: 500;
+        outline: none;
+        border: none;
+        margin-left: 30px;
+    }
+    
+    #copyBtn{
+        align-self: center;
+        vertical-align: middle;
+        height: 24px;
+        cursor: pointer;
+    }
+    
+    #frameX{
+        width: 100%;
+        display: block;
+        background-color: #0A0C12;
+        position: relative;
+    }
+    
+    #frame{
+        height: 100%;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        background-color: white;
+    }
+    
+    #usersec{
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+    }
+    
+    #toolsec{
+        width: 100%;
+        position: absolute;
+        top: 50px;
+        display: block;
+    }
+    
+    .toolIcon{
+        height: 30px;
+        width: 30px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        cursor: pointer;
+    }
+    
+    .usersec_icons{
+        height: 30px;
+        width: 30px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        cursor: pointer;
+    }
+    
+    .editor{
+        width: 100%;
+        background-color: #0F111A;
+        min-height: 30px;
+    }
+    
+    .backdrop{
+        display: none;
+    }
+    
+    .code{
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: relative;
+        color: #8d8d8d;
+        min-height: 0;
+    }
+    
+    #p-title{
+        font-family: 'Montserrat';
+        font-size: 15px;
+        color: rgb(153, 0, 255);
+        background-color: transparent;
+        outline: none;
+        border-style: none;
+        border-bottom-style: solid;
+        border-bottom-color: rgb(153, 0, 255);
+        width: 150px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        border-width: 1px;
+    }
+    
+    #p-desc{
+        font-family: 'Montserrat';
+        font-size: 15px;
+        outline: none;
+        color: rgb(153, 0, 255);
+        background-color: transparent;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(153, 0, 255);
+        width: 225px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        resize: none;
+        height: 100px;
+    }
+    
+    .mgr_title_container{
+        height: 40px;
+        width: 100%;
+        margin-bottom: 30px;
+        color: rgb(107, 107, 107);
+        font-family: 'Montserrat';
+        font-weight: 500;
+        font-size: 15px;
+        letter-spacing: 0.75px;
+    }
+    
+    .secText{
+        color: grey;
+        font-family: 'Montserrat';
+        font-size: 18px;
+        display: block;
+    }
+    
+    .jsFrameWork{
+        outline: none;
+        border: none;
+        color: black;
+        background-color: rgb(211, 211, 211);
+        margin-left: 10px;
+        margin-left: 10px;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+    
+    .activeJSF{
+        background-color: yellow;
+    }
+    
+    .hr{
+        border: 1px solid rgb(41, 41, 41);
+    }
+    
+    #pmgr_home{
+        display: block;
+    }
+    
+    .linkAccInp{
+        font-family: 'Montserrat';
+        font-size: 15px;
+        color: rgb(153, 0, 255);
+        background-color: transparent;
+        outline: none;
+        border-style: none;
+        border-bottom-style: solid;
+        border-bottom-color: rgb(153, 0, 255);
+        width: 200px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        border-width: 1px;
+    }
+    
+    #submitCredSignUp,
+    #submitCredSignIn{
+        height: 30px;
+        display: inline-block;
+        margin-left: 10px;
+        cursor: pointer;
+        position: absolute;
+    }
+    
+    #createAccText,
+    #linkAccText{
+        text-decoration: underline;
+        color: #7700ff;
+        cursor: pointer;
+        font-family: 'Montserrat';
+    }
+    
+    .dropDown{
+        height: 22px;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .dropDown_active{
+        height: 22px;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%) rotate(180deg);
+    }
+    
+    #logout{
+        display: block;
+        text-align: center;
+        margin: auto;
+        background-color: red;
+        outline: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+    
+    #usernamevalue,
+    #useridvalue{
+        font-family: 'Montserrat';
+        font-size: 15px;
+        color: white;
+    }
+/* } */

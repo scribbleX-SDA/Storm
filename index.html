@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+    <title>Web Development IDE - Storm | ScribbleX</title>
+    <meta name="title" content="Web Development IDE - ScribbleX Storm">
+    <meta name="description" content="Online Web Development Environment - Storm - The best real time Editor that provides an easy to use and simple Integrated Development Environment (IDE) for the students and working professionals to Edit, Save, Compile, Execute and Share Code. Powered By ScribbleX.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://storm.scribblex.net/">
+    <meta property="og:title" content="Web Development IDE - Storm | ScribbleX">
+    <meta property="og:description" content="Online Web Development Environment - Storm - The best real time Editor that provides an easy to use and simple Integrated Development Environment (IDE) for the students and working professionals to Edit, Save, Compile, Execute and Share Code. Powered By ScribbleX.">
+    <meta property="og:image" content="https://storm.scribblex.net/assets/images/storm.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://storm.scribblex.net">
+    <meta property="twitter:title" content="Web Development IDE - Storm | ScribbleX">
+    <meta property="twitter:description" content="Online Web Development Environment - Storm - The best real time Editor that provides an easy to use and simple Integrated Development Environment (IDE) for the students and working professionals to Edit, Save, Compile, Execute and Share Code. Powered By ScribbleX.">
+    <meta property="twitter:image" content="https://storm.scribblex.net/assets/images/storm.jpg">
+    
+    <!--  Favicons - START  -->
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="assets/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+    <!--  Favicons - END  -->
+    
+    
+    
+    
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QYQYX3ST23"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-QYQYX3ST23');
+    </script>
+        
+    
+    
+
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/customAlert.css">
+    <link rel="stylesheet" href="style/preloader.css">
+
+    <script src="js/ace/ace.js"></script>
+    <script src="js/ace/ext-beautify.js"></script>
+    <script src="js/ace/ext-language_tools.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="js/lib/split.js"></script>
+    <script src="js/lib/customAlert.js"></script>
+    <script src="js/lib/slxKey.js"></script>
+    <script src="js/src/preloader.js"></script>
+    <script src="js/src/cookiemanager.js"></script>
+    <script src="js/lib/sha256.js"></script>
+    <script src="js/src/generateID.js"></script>
+
+
+    <script>
+        var jsf = 'PureJS';     // This variable defines the current active Framework of Javascript in the slxEnv.
+
+        function hideEditorMargins(){
+            // making all editor margins hidden...
+            var margins = document.querySelectorAll(".ace_print-margin");
+            margins.forEach((margin)=>{
+                margin.style.visibility = "hidden";
+            });
+        }
+
+        function initiate(){    // this function runs on-load(body)
+            alignElm();
+            preloader();
+            setTimeout(()=>{
+                pre_genID_analysis();
+            }, 5000);
+            
+        }
+
+        let renderMode = true;  // this variable defines if auto-Render is ON(true) / OFF(false)
+    </script>
+</head>
+<body onload="initiate();">
+    <!--  The Preloader Container.  -->
+    <div id="preloader">
+        <!-- <span id="initiateText">initiating...</span> -->
+        <img src="assets/gif/preloader.gif" alt="" id="preAnime">
+    </div>
+    <!-------------------------------------------------->
+    <!--  The Main-App Container  -->
+    <div id="container">
+        <div id="main">
+            <!--  This section holds all the app-content above footer  -->
+            <div id="manager">
+                <!--  Manager - The part where we keep the tool-icons and the panels of the tools.  -->
+                <div id="innerMgr">
+                    <div id="toolsHolder">
+                        <div id="topLeftHolder">
+                            <img src="assets/logo/slx.png" alt="ScribbleX" title="ScribbleX" id="top-left-logo">
+                            <div id="toolsec">
+                                <div style="display: flex; width: 100%; flex-direction: column; align-items: center;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                        width="30" height="30"
+                                        viewBox="0 0 172 172"
+                                        style=" fill:#000000;" 
+                                        class="toolIcon" id="folderIcon">
+                                        <title>Manager</title>
+                                        <g fill="none" 
+                                            fill-rule="nonzero" 
+                                            stroke="none" 
+                                            stroke-width="1" 
+                                            stroke-linecap="butt" 
+                                            stroke-linejoin="miter" 
+                                            stroke-miterlimit="10" 
+                                            stroke-dasharray="" 
+                                            stroke-dashoffset="0" 
+                                            font-family="none" 
+                                            font-weight="none" 
+                                            font-size="none" 
+                                            text-anchor="none" 
+                                            style="mix-blend-mode: normal">
+                                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                                            <g>
+                                                <path d="M143.33333,43h-64.5l-14.33333,-14.33333h-35.83333c-7.88333,0 -14.33333,6.45 -14.33333,14.33333v28.66667h143.33333v-14.33333c0,-7.88333 -6.45,-14.33333 -14.33333,-14.33333z" fill="#666666" id="folderIcon_top"></path>
+                                                <path d="M143.33333,43h-114.66667c-7.88333,0 -14.33333,6.45 -14.33333,14.33333v71.66667c0,7.88333 6.45,14.33333 14.33333,14.33333h114.66667c7.88333,0 14.33333,-6.45 14.33333,-14.33333v-71.66667c0,-7.88333 -6.45,-14.33333 -14.33333,-14.33333z" fill="#8d8d8d" id="folderIcon_bottom"></path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <img src="assets/icons/save.png" alt="save" title="Save (Ctrl + S)" class="toolIcon" onclick="saveCode();">
+                                </div>
+                            </div>
+                            <div id="usersec">
+                                <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" 
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                        width="30px" height="30px" 
+                                        viewBox="0 0 30 30" 
+                                        version="1.1" 
+                                        class="user-svg usersec_icons" 
+                                        fill="#8d8d8d"
+                                        id="userAcc">
+                                        <title>Account</title>
+                                        <g id="surface1">
+                                        <rect x="0" y="0" width="30" height="30" style="fill:rgba(100%,100%,100%, 0);fill-opacity:1;stroke:none;"/>
+                                        <path d="M 27.15625 30 L 2.90625 30 C 1.917969 30 0.988281 29.410156 0.375 28.359375 C -0.105469 27.511719 -0.105469 26.28125 0.375 25.226562 L 1.746094 22.238281 C 2.699219 20.199219 5.058594 18.921875 6.839844 18.777344 C 7.421875 18.738281 8.585938 18.484375 9.746094 18.191406 C 10.597656 17.972656 11.082031 17.828125 11.355469 17.714844 C 11.285156 17.46875 11.152344 17.175781 10.980469 16.917969 C 8.925781 15.210938 7.695312 12.328125 7.695312 9.238281 C 7.695312 4.132812 10.980469 0.015625 15.050781 0.015625 C 19.121094 0.015625 22.398438 4.171875 22.398438 9.238281 C 22.398438 12.328125 21.171875 15.210938 19.121094 16.917969 C 18.945312 17.175781 18.808594 17.429688 18.738281 17.6875 C 19.015625 17.792969 19.496094 17.945312 20.316406 18.160156 C 21.339844 18.410156 22.566406 18.625 23.191406 18.703125 C 25 18.882812 27.324219 20.085938 28.285156 22.125 L 29.613281 25 C 30.128906 26.101562 30.128906 27.484375 29.613281 28.320312 C 29.070312 29.371094 28.109375 30 27.15625 30 Z M 15.050781 1.515625 C 11.730469 1.515625 9.066406 5.007812 9.066406 9.273438 C 9.066406 11.96875 10.128906 14.40625 11.863281 15.867188 C 11.898438 15.894531 11.96875 15.933594 12.007812 16.007812 C 12.488281 16.664062 12.753906 17.394531 12.753906 18.160156 C 12.753906 18.378906 12.691406 18.597656 12.515625 18.738281 C 12.378906 18.855469 12.042969 19.175781 10.054688 19.6875 C 9.128906 19.90625 7.730469 20.199219 6.949219 20.265625 C 5.539062 20.417969 3.660156 21.433594 2.976562 22.933594 L 1.640625 25.910156 C 1.375 26.535156 1.335938 27.265625 1.578125 27.664062 C 1.84375 28.140625 2.363281 28.613281 2.941406 28.613281 L 27.191406 28.613281 C 27.769531 28.613281 28.285156 28.140625 28.554688 27.664062 C 28.757812 27.296875 28.792969 26.421875 28.492188 25.769531 L 27.15625 22.894531 C 26.46875 21.433594 24.589844 20.417969 23.191406 20.265625 C 22.507812 20.199219 21.207031 19.984375 20.109375 19.6875 C 18.125 19.175781 17.785156 18.855469 17.644531 18.777344 C 17.511719 18.625 17.410156 18.410156 17.410156 18.191406 C 17.410156 17.429688 17.679688 16.699219 18.160156 16.046875 C 18.195312 16.007812 18.230469 15.933594 18.292969 15.894531 C 20.039062 14.480469 21.097656 12.007812 21.097656 9.339844 C 21.035156 5.007812 18.363281 1.515625 15.050781 1.515625 Z M 15.050781 1.515625 "/>
+                                        </g>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                        width="30" height="30"
+                                        viewBox="0 0 24 24"
+                                        style=" fill:#8d8d8d;"
+                                        class="user-svg usersec_icons">
+                                        <title>Settings</title>
+                                        <path d="M13.5 5l-.4-2.6C13 2.2 12.8 2 12.6 2h-1.2c-.2 0-.5.2-.5.4L10.5 5H13.5zM10.5 19l.4 2.6c0 .2.2.4.5.4h1.2c.2 0 .5-.2.5-.4l.4-2.6H10.5zM19 13.5l2.6-.4c.2 0 .4-.2.4-.5v-1.2c0-.2-.2-.5-.4-.5L19 10.5V13.5zM5 10.5l-2.6.4C2.2 11 2 11.2 2 11.4v1.2c0 .2.2.5.4.5L5 13.5V10.5zM9.8 5.2l-1.7-2C8 3 7.7 2.9 7.5 3.1l-1 .6C6.3 3.8 6.2 4 6.3 4.2l.9 2.5L9.8 5.2zM14.2 18.8l1.7 2c.2.2.4.2.6.1l1-.6c.2-.1.3-.4.2-.6l-.9-2.5L14.2 18.8zM18.8 9.8l2-1.7C21 8 21.1 7.7 20.9 7.5l-.6-1c-.1-.2-.4-.3-.6-.2l-2.5.9L18.8 9.8zM5.2 14.2l-2 1.7C3 16 2.9 16.3 3.1 16.5l.6 1c.1.2.4.3.6.2l2.5-.9L5.2 14.2zM6.7 7.2L4.2 6.3C4 6.2 3.8 6.3 3.6 6.5l-.6 1C2.9 7.7 3 8 3.2 8.1l2 1.7L6.7 7.2zM17.3 16.8l2.5.9c.2.1.5 0 .6-.2l.6-1c.1-.2.1-.5-.1-.6l-2-1.7L17.3 16.8zM16.8 6.7l.9-2.5c.1-.2 0-.5-.2-.6l-1-.6C16.3 2.9 16 3 15.9 3.2l-1.7 2L16.8 6.7zM7.2 17.3l-.9 2.5c-.1.2 0 .5.2.6l1 .6C7.7 21.1 8 21 8.1 20.8l1.7-2L7.2 17.3zM12 15c-1.7 0-3-1.3-3-3 0-1.7 1.3-3 3-3 1.7 0 3 1.3 3 3C15 13.7 13.7 15 12 15zM12 11c-.6 0-1 .4-1 1 0 .6.4 1 1 1 .6 0 1-.4 1-1C13 11.4 12.6 11 12 11z"></path>
+                                        <path d="M12,5c-3.9,0-7,3.1-7,7s3.1,7,7,7s7-3.1,7-7S15.9,5,12,5z M12,14c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S13.1,14,12,14z" opacity="0"></path>
+                                        <path d="M11 5H13V11H11z"></path>
+                                        <path d="M5.5 13H11.5V15H5.5z" transform="rotate(-29.991 8.537 14)"></path>
+                                        <path d="M14.5 11H16.5V17H14.5z" transform="rotate(-60.007 15.463 13.999)"></path>
+                                        <path d="M12,20c-4.4,0-8-3.6-8-8c0-4.4,3.6-8,8-8c4.4,0,8,3.6,8,8C20,16.4,16.4,20,12,20z M12,6c-3.3,0-6,2.7-6,6c0,3.3,2.7,6,6,6 c3.3,0,6-2.7,6-6C18,8.7,15.3,6,12,6z"></path>
+                                    </svg>
+                                    <img src="assets/icons/minimize.png" alt="minimize" title="Minimize Manager" class="usersec_icons" id="minMgr">
+                                    <img src="assets/icons/maximize.png" alt="maximize" title="Maximize Manager" class="usersec_icons" style="display: none;" id="maxMgr">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="toolsMgr">
+                        <div class="toolsMgr_inner" id="pmgr_home">
+                            <div class="mgr_title_container">
+                                MANAGER
+                            </div>
+                            <input type="text" placeholder="Project Title" id="p-title" spellcheck="false" autocomplete="off">
+                            <br>
+                            <br>
+                            <textarea name="p-desc" id="p-desc" placeholder="Description... (Optional)" spellcheck="false" autocomplete="off"></textarea>
+                            <br>
+                            <br>
+                            <hr class="hr">
+                            <br>
+                            <span class="secText">JS Framework:</span>
+                            <br>
+                            <br>
+                            <button class="jsFrameWork activeJSF" jsf="PureJS">Pure JS</button>
+                            <button class="jsFrameWork" jsf="jQuery">jQuery</button>
+                            <button class="jsFrameWork" jsf="React">React</button>
+                            <br>
+                            <br>
+                            <hr class="hr">
+                        </div>
+                        <div class="toolsMgr_inner" id="accLink">
+                            <div class="mgr_title_container">
+                                ACCOUNT
+                            </div>
+                            <div id="signinContainer">
+                                <span class="secText">Sign In</span>
+                                <br>
+                                <input type="text" id="usernameSignIn" style="width: 150px; display: inline-block;" placeholder="Username / Email" class="linkAccInp">
+                                <img src="assets/icons/submit.png" alt="Submit" id="submitCredSignIn" title="Sign In">
+                                <br>
+                                <br>
+                                <input type="password" id="authkeySignIn" placeholder="Password" class="linkAccInp">
+                                <br>
+                                <br>
+                                <br>
+                                <span id="createAccText">Don't have an account?</span>
+                            </div>
+                            <div id="signupContainer" style="display: none;">
+                                <span class="secText">Sign Up</span>
+                                <br>
+                                <input type="text" id="usernameSignUp" style="width: 150px; display: inline-block;" placeholder="@username" class="linkAccInp">
+                                <img src="assets/icons/submit.png" alt="Submit" id="submitCredSignUp" title="Sign Up">
+                                <br>
+                                <br>
+                                <input type="email" id="emailSignUp" class="linkAccInp" placeholder="your@email.address">
+                                <br>
+                                <br>
+                                <input type="password" id="authkeySignUp" placeholder="Password" class="linkAccInp">
+                                <br>
+                                <br>
+                                <br>
+                                <span id="linkAccText">Already have account?</span>
+                            </div>
+                        </div>
+                        <div class="toolsMgr_inner" id="accUnlink">
+                            <span class="secText">Log-Out</span>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <button id="logout">Logout</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="adContainer"></div>
+            </div>
+            <div id="app">
+                <div id="innerApp">
+                    <div id="editorPane">
+                        <div class="editorContainer" id="htmlContainer">
+                            <div class="editorHeader" id="htmlHeader">
+                                <img src="assets/icons/html-5.png" alt="HTML5" class="editorLogo">
+                                <img src="assets/icons/down.png" alt="Drop down arrow" class="dropDown" id="htmldrop">
+                            </div>
+                            <div class="editor" id="htmlEditorP">
+                                <div class="code" id="htmlEditor"></div>
+                            </div>
+                            <div class="editor backdrop" id="htmlback">
+                                <div class="code" id="headScriptEditor"></div>
+                            </div>
+                        </div>
+                        <div class="editorContainer" id="cssContainer">
+                            <div class="editorHeader" id="cssHeader">
+                                <img src="assets/icons/css-3.png" alt="CSS3" class="editorLogo">
+                            </div>
+                            <div class="editor" id="cssEditorP">
+                                <div class="code" id="cssEditor"></div>
+                            </div>
+                            <div class="editor backdrop" id="cssback"></div>
+                        </div>
+                        <div class="editorContainer" id="jsContainer">
+                            <div class="editorHeader" id="jsHeader">
+                                <img src="assets/icons/js.png" alt="Javascript" class="editorLogo">
+                            </div>
+                            <div class="editor" id="jsEditorP">
+                                <div class="code" id="jsEditor"></div>
+                            </div>
+                            <div class="editor backdrop" id="jsback"></div>
+                        </div>
+                    </div>
+                    <div id="browserPane">
+                        <div id="frameMgr">
+                            <div id="frameHeader">
+                                <img src="assets/logo/slx.png" alt="ScribbleX" class="headerLogo">
+                            </div>
+                            <div id="frameContainer">
+                                <div id="browserHead">
+                                    <div id="browserButtons">
+                                        <img src="assets/icons/home.png" alt="Home" class="bbtn" id="homeBtn">
+                                        <img src="assets/icons/reload.png" alt="Reload" class="bbtn" id="reload" onclick="render();">
+                                    </div>
+                                    <div id="urlHolder">
+                                        <input type="url" id="projectID" spellcheck="false" autocomplete="off" value="https://slx4.tech/?id={projectID}" readonly>
+                                        <img src="assets/icons/baseline_content_copy_white_24dp.png" alt="Copy" title="Copy Link!" id="copyBtn">
+                                    </div>
+                                    <img src="assets/icons/command-line.png" alt="Console" title="Toggle Console" id="toggleConsole">
+                                    <div id="renderAnime">
+                                        <img src="assets/gif/loading.gif" alt="" id="renderWait">
+                                    </div>
+                                </div>
+                                <div id="frameX">
+                                    <iframe 
+                                        frameborder="0"
+                                        sandbox="allow-downloads 
+                                            allow-forms 
+                                            allow-modals 
+                                            allow-orientation-lock 
+                                            allow-pointer-lock 
+                                            allow-popups 
+                                            allow-popups-to-escape-sandbox 
+                                            allow-presentation 
+                                            allow-same-origin 
+                                            allow-scripts 
+                                            allow-top-navigation 
+                                            allow-top-navigation-by-user-activation 
+                                            allow-presentation"
+                                        id="frame">
+                                    </iframe>
+                                </div>
+                            </div>
+                            <div id="frameCover">
+                                <img src="assets/gif/preloader.gif" alt="" id="sandboxAnime">
+                            </div>
+                        </div>
+                        <!-- <div id="consoleMgr">
+                            <div id="consoleHeader">
+                                <img src="assets/icons/command-line.png" alt="Console" class="headerLogo">
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer"></div>
+    </div>
+    <div id="screen-issue">
+        <img src="assets/logo/scribblex.png" alt="ScribbleX" class="issue_logo">
+    </div>
+
+
+    <script src="js/src/editors.js"></script>
+    <script src="js/src/alignElm.js"></script>
+    <script src="js/src/splitContainers.js"></script>
+    <script src="js/src/main.js"></script>
+    <script src="js/src/resizeObservers.js"></script>
+    <script src="js/src/shortcuts.js"></script>
+    <script src="js/src/toolSwitch.js"></script>
+    <script src="js/src/jsfSwitch.js"></script>
+    <script src="js/src/managerSwitch.js"></script>
+    <script src="js/src/account.js"></script>
+    <script src="js/src/dropDownManager.js"></script>
+    <script src="js/src/render.js"></script>
+
+    <script>
+        document.getElementById("createAccText").addEventListener("click", ()=>{
+            document.getElementById("signinContainer").style.display = "none";
+            document.getElementById("signupContainer").style.display = "block";
+        });
+
+        document.getElementById("linkAccText").addEventListener("click", ()=>{
+            document.getElementById("signinContainer").style.display = "block";
+            document.getElementById("signupContainer").style.display = "none";
+        });
+    </script>
+
+
+    <script>
+        document.getElementById("toggleConsole").addEventListener("click", ()=>{
+            var consoleState = document.getElementById("toggleConsole").getAttribute("val");
+            var frame = document.getElementById("frame").contentWindow;
+            if(consoleState == "false"){
+                frame.eruda.show();
+                document.getElementById("toggleConsole").setAttribute("val", "true");
+            }else{
+                document.getElementById("toggleConsole").setAttribute("val", "false");
+                frame.eruda.hide();
+            }
+        });
+    </script>
+</body>
+</html>
