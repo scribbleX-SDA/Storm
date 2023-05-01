@@ -14,7 +14,7 @@ Most of the functionalities have their own JS files to avoid any sort of clatter
 Download the source code of the project from the github repository and install it in a directory of WAMP / LAMP / XAMPP server.
 That's how easy it is.
 
-![Logo](https://storm.scribblex.net/assets/images/storm.jpg)
+![Logo](./assets/images/storm.jpg)
 
 
 ## License
